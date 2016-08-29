@@ -1,0 +1,17 @@
+{
+  "name": "mean-boilerplate",
+  "description": "MYSQL, MONGODB, ANGULARJS, EXPRESSJS, NODEJS",
+  "main": "app.js",
+  "authors": [
+    "vizteck"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/VizteckSolutions/mean-boilerplate",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

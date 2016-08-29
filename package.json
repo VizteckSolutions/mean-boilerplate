@@ -1,0 +1,22 @@
+{
+  "name": "mean-boilerplate",
+  "version": "1.0.0",
+  "description": "MYSQL, MONGODB, ANGULARJS, EXPRESSJS, NODEJS",
+  "main": "\u001b[Z\u001b[Z\tapp.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VizteckSolutions/mean-boilerplate.git"
+  },
+  "author": "vizteck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VizteckSolutions/mean-boilerplate/issues"
+  },
+  "homepage": "https://github.com/VizteckSolutions/mean-boilerplate#readme"
+}
