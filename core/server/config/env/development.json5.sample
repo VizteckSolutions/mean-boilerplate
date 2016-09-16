@@ -1,0 +1,57 @@
+{
+  // This is your MYSQL Database configuration
+  db: {
+    name: "mean_db",
+    password: "",
+    username: "root",
+    host: "127.0.0.1",
+    port: 3306
+  },
+
+  mongodb: {
+    connectUrl : 'mongodb://localhost:27017/mean_db',
+    uri: 'mongodb://localhost:27017/mean_db',
+    options: {
+      user: '',
+      pass: ''
+    },
+    // Enable mongoose debug mode
+    debug: false
+  },
+
+
+  app: {
+    name: "Mean",
+    appBaseUrl : "http://localhost:3010/",
+    baseS3url : ""
+  },
+
+  // You will need to get your own client id's before this will work properly
+  facebook: {
+    clientID: "<CLIENT ID>",
+    clientSecret: "<CLIENT SECRET>",
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+
+  twitter: {
+    clientID: "<CLIENT ID>",
+    clientSecret: "<CLIENT SECRET>",
+    callbackURL: "http://localhost:3000/auth/twitter/callback"
+  },
+  google: {
+    realm: "http://localhost:3000/",
+    callbackURL: "http://localhost:3000/auth/google/callback"
+  },
+
+  expressSessionSecret : '076ee61d63aa14324j3j4345ea872411e433b9',
+
+  email:{
+    source: "info@truelink.com",
+    user: "razatayyab786",
+    password: "tayyab5807",
+    host: "smtp.sendgrid.net",
+    port: 465,
+    secure: true
+  }
+
+}
