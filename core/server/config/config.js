@@ -10,15 +10,18 @@ var nconf = require('nconf'),
 
 
 var rootPath = path.normalize(__dirname + '/..');
+var basePath = path.normalize(__dirname + '/../../..');
 
-var modelsDir =  rootPath + '/db/models';
-var  modelsDirMongoPattern = rootPath + '/db/mongomodels';
+
+var modelsDir = rootPath + '/db/models';
+var modelsDirMongoPattern = rootPath + '/db/mongomodels';
 // Load app configuration
 
 var computedConfig = {
     root: rootPath,
-    modelsDir :modelsDir,
-    modelsDirMongo : modelsDirMongoPattern
+    modelsDir: modelsDir,
+    modelsDirMongo: modelsDirMongoPattern,
+    basePath: basePath
 };
 
 
@@ -32,30 +35,44 @@ var computedConfig = {
 //   6. Shared config file located at './env/all.json'
 //
 nconf.argv()
-    .env(['PORT','NODE_ENV','FORCE_DB_SYNC','forceSequelizeSync'])  // Load select environment variables
-    .defaults({store:{
-        NODE_ENV:'development'
+    .env(['PORT', 'NODE_ENV', 'FORCE_DB_SYNC', 'forceSequelizeSync']) // Load select environment variables
+    .defaults({
+        store: {
+            NODE_ENV: 'development'
 
-    }});
+        }
+    });
 
-var envConfigPath = rootPath + '/config/env/'+nconf.get('NODE_ENV')+'.json5';
-try{
+var envConfigPath = rootPath + '/config/env/' + nconf.get('NODE_ENV') + '.json5';
+try {
 
-    if(!fs.statSync(envConfigPath).isFile()){
+    if (!fs.statSync(envConfigPath).isFile()) {
         throw new Error(); // throw error to trigger catch
     }
-}
-catch(err){
+} catch (err) {
 
-    throw new StandardError('Environment specific config file not found! Throwing up! (NODE_ENV='
-        +nconf.get('NODE_ENV')+')');
+    throw new StandardError('Environment specific config file not found! Throwing up! (NODE_ENV=' +
+        nconf.get('NODE_ENV') + ')');
 }
-nconf.file(nconf.get('NODE_ENV'),{ file: envConfigPath, type:'file', format:json5 })
-    .file('shared',{ file: rootPath+ '/config/env/all.json5', type:'file', format:json5 })
-    .add('base-defaults',{type:'literal', store:{
-        PORT:5555
-    }})
-    .overrides({store:computedConfig});
+nconf.file(nconf.get('NODE_ENV'), {
+        file: envConfigPath,
+        type: 'file',
+        format: json5
+    })
+    .file('shared', {
+        file: rootPath + '/config/env/all.json5',
+        type: 'file',
+        format: json5
+    })
+    .add('base-defaults', {
+        type: 'literal',
+        store: {
+            PORT: 5555
+        }
+    })
+    .overrides({
+        store: computedConfig
+    });
 
 module.exports = nconf.get();
 /**
@@ -81,7 +98,9 @@ module.exports.getGlobbedFiles = function(globPatterns, removeRoot) {
         if (urlRegex.test(globPatterns)) {
             output.push(globPatterns);
         } else {
-            var files = glob(globPatterns, { sync: true });
+            var files = glob(globPatterns, {
+                sync: true
+            });
 
             if (removeRoot) {
                 files = files.map(function(file) {
