@@ -25,28 +25,25 @@ var db = require('./core/server/config/sequelize');
 var passport = require('./core/server/config/passport');
 var mongoose = require('./core/server/config/mongoose');
 
-mongoose.connect(function (db) {
-    mongoose.loadModels();
+var app = express();
 
-    var app = express();
-
-    //Initialize Express
-    var expresss = require('./core/server/config/express')(app, passport);
+//Initialize Express
+console.log('port', config.PORT)
+var expresss = require('./core/server/config/express')(app, passport);
 
 
-    //Start the app by listening on <port>
-    var server = app.listen(config.PORT);
+//Start the app by listening on <port>
+console.log(config.PORT);
+var server = app.listen(config.PORT);
 
-    winston.info('Express app started on port ' + config.PORT);
+winston.info('Express app started on port ' + config.PORT);
 
-    //expose app
-    module.exports = app;
+//expose app
+module.exports = app;
 
-});
-
-
-
-
-
-
-
+// mongoose.connect(function(db) {
+//     // mongoose.loadModels();
+//
+//
+//
+// });
