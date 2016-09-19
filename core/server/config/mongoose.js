@@ -2,7 +2,7 @@
  * Created by Asif on 3/12/2016.
  */
 
-'use strict';
+'use strict'; //NOSONAR
 
 var fs = require('fs');
 var path = require('path');
@@ -19,7 +19,7 @@ module.exports.loadModels = function (callback) {
     // loop through all files in models directory ignoring hidden files and this file
     fs.readdirSync(config.modelsDirMongo)
         .filter(function (file) {
-            return (file.indexOf('.') !== 0) && (file !== 'index.js')
+            return (file.indexOf('.') !== 0) && (file !== 'index.js');
         })
         // import model files and save model names
         .forEach(function (file) {
@@ -38,7 +38,7 @@ module.exports.connect = function (cb) {
         // Log Error
         if (err) {
             winston.log('Error','Could not connect to MongoDB!');
-          
+
         } else {
 
             // Enabling mongoose debug mode if required
@@ -46,10 +46,10 @@ module.exports.connect = function (cb) {
 
             winston.info("Connected to MongoDb");
 
-    
+
 
             // Call callback FN
-            if (cb) cb(db);
+            if (cb) {cb(db);}
         }
     });
 

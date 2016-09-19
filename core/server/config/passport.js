@@ -1,6 +1,7 @@
+'use strict'; //NOSONAR
 var passport = require('passport');
 var _ = require('lodash');
-// These are different types of authentication strategies that can be used with Passport. 
+// These are different types of authentication strategies that can be used with Passport.
 var LocalStrategy = require('passport-local').Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -100,7 +101,7 @@ passport.use(new FacebookStrategy({
                 }).then(function(u){
                     winston.info('New User (facebook) : { id: ' + u.id + ', username: ' + u.username + ' }');
                     return done(null, u);
-                })
+                });
             } else {
                 winston.info('Login (facebook) : { id: ' + user.id + ', username: ' + user.username + ' }');
                 return done(null, user);
@@ -129,7 +130,7 @@ passport.use(new GoogleStrategy({
                 }).then(function(u){
                     winston.info('New User (google) : { id: ' + u.id + ', username: ' + u.username + ' }');
                     done(null, u);
-                })
+                });
             } else {
                 winston.info('Login (google) : { id: ' + user.id + ', username: ' + user.username + ' }');
                 done(null, user);
@@ -141,4 +142,3 @@ passport.use(new GoogleStrategy({
 ));
 
 module.exports = passport;
-

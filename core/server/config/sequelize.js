@@ -42,7 +42,6 @@ models.forEach(function(filePath) {
     var model = sequelize.import(path.join(config.basePath, filePath));
 
     db[model.name] = model;
-    console.log('Model', filePath)
 });
 
 
@@ -62,7 +61,7 @@ models.forEach(function(filePath) {
 // invoke associations on each of the models
 Object.keys(db).forEach(function(modelName) {
     if (db[modelName].options.hasOwnProperty('associate')) {
-        db[modelName].options.associate(db)
+        db[modelName].options.associate(db);
     }
 });
 
@@ -77,8 +76,9 @@ sequelize
     })
     .then(function() {
         winston.info("Database " + (config.FORCE_DB_SYNC === 'true' ? "*DROPPED* and " : "") + "synchronized");
-        if (config.FORCE_DB_SYNC === 'true')
-            dbSeed(db, sequelize);
+        // if (config.FORCE_DB_SYNC === 'true'){
+        //     dbSeed(db, sequelize);
+        //   }
     }).catch(function(err) {
         winston.error("An error occurred: ", err);
     });
